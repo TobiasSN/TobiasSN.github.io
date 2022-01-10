@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tobias SN</title>
+		<style>
+			/* Dark mode (default) */
+			:root {
+				--outer-background-color: #181818;
+				--inner-background-color: #222222;
+
+				--text-color: #e5e7eb;
+			}
+
+			/* Light mode */
+			@media (prefers-color-scheme: light) {
+				:root {
+					--outer-background-color: white;
+				}
+			}
+
+			body {
+				font-family:
+					-apple-system,
+					BlinkMacSystemFont,
+					'Segoe UI',
+					Helvetica,
+					Arial,
+					sans-serif;
+				
+
+				height: 100vh;
+				margin: 0;
+
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				background-color: var(--outer-background-color);
+				color: var(--text-color);
+
+				font-size: 16px;
+				line-height: 1.6;
+			}
+
+			#container {
+				width: 55ch;
+				padding: 2em 1em 2em 1em;
+				margin: 12px;
+
+				display: flex;
+				flex-direction: column;
+
+				background-color: var(--inner-background-color);
+
+				border-radius: 12px;
+			}
+
+			header {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			h1, h2 {
+				text-align: center;
+			}
+
+			section {
+				display: flex;
+				flex-direction: column;
+			}
+
+			#profiles {
+				gap: 1em;
+
+				align-self: center;
+			}
+
+			#profiles > a {
+				text-decoration: none;
+			}
+
+			#profiles > a > div {
+				padding: 1em 2em 1em 2em;
+
+				display: flex;
+				align-items: center;
+				flex-basis: min-content;
+				gap: 1em;
+
+				border-radius: 0.75em;
+
+				color: white;
+			}
+
+			#profiles > a > div > svg {
+				height: 6em;
+				width: 6em;
+			}
+		</style>
+	</head>
+	<body>
+		<main id="container">
+			<header>
+				<%- svg("avatar.svg") %>
+				<h1>Hi! I'm Tobias SN</h1>
+			</header>
+			<section>
+				<p>
+					I'm a 17-year old male from Denmark, who likes to do
+					programming	in his free time. I also like to play games, mainly
+					puzzles and 2D platformers.
+				</p>
+			</section>
+			<section id="profiles">
+				<h2>Profiles</h2>
+				<% const profiles = [
+					{
+						name: "discord",
+						background: "#5865f2",
+						foreground: "#ffffff",
+						username: "Tobias SN#9569",
+						url: "discord:/users/202776359439826944",
+						noNewTab: true
+					},
+					{
+						name: "github",
+						background: "#191818",
+						foreground: "#fffffe",
+						username: "TobiasSN",
+						url: "https://github.com/TobiasSN"
+					},
+					{
+						name: "twitter",
+						background: "#2691db",
+						foreground: "#ffffff",
+						username: "DatTobiasSN",
+						url: "https://twitter.com/DatTobiasSN"
+					}
+				]; %>
+				<% for (profile of profiles) { %>
+					<a href="<%= profile.url %>" rel="noopener" <%- profile.noNewTab ? "" : 'target="_blank"' %>>
+						<div style="background-color: <%= profile.background %>; color: <%= profile.foreground %>">
+							<%- svg(`profiles/${profile.name}.svg`) %>
+							<%= profile.username %>
+						</div>
+					</a>
+				<% } %>
+			</section>
+		</main>
+	</body>
+</html>
